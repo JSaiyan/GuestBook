@@ -1,0 +1,63 @@
+/*
+
+Authors: Justin Saephan
+Date: 01/30/2025
+Assignment: GuestBook
+
+*/
+
+
+body
+{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+main
+{
+  display: flex;
+  flex-direction: row;
+  width: 70%;
+  height: 22rem;
+  background-color: whitesmoke;
+  border: .1rem solid black;
+  border-radius: 1rem;
+  box-shadow: 1px 1px 8px black;
+  margin-top: 5rem;
+  padding: 2rem;
+}
+
+section{
+  display: flex;
+  flex-direction: column
+}
+
+
+
+h1
+{
+  color: rgb(63, 0, 100);
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+#button1
+{
+  color:white;
+  background-color: rgb(35, 0, 100);
+  border-radius: .3rem;
+  box-shadow: 1px 1px 3px black;
+  width: 7.3rem;
+  height: 1.5rem;
+  margin: 0 .2rem 1rem 0; 
+}
+
+
+#input{
+  margin-bottom: 1rem;
+}
+
+
+

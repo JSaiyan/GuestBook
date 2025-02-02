@@ -1,0 +1,59 @@
+<!--
+
+Authors: Justin Saephan
+Date: 01/30/2025
+Assignment: GuestBook
+
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GuestBook</title>
+  <link rel="stylesheet" href="styles/styles.css">
+  <link rel="icon" type="image/png" href="images/lion.jpg">
+  <script src="script.js" defer></script>
+
+ 
+</head>
+
+<body>
+
+  <main>
+    <div>
+    </div>
+    <section>
+      <div>
+        <h1>GuestBook</h1>
+        <p><b>Contact Form</b></p>
+
+        <!-- Guestbook Form -->
+        <form action="/" method="POST">
+        
+        <label for = "Name">Your Name:</label> <input type="text" id="input" placeholder="Enter your Name"></label>
+        <label for = "Company"> Company:</label> <input type="text" id="input" placeholder="Enter your Company"></label>
+        <label for = "Email">Email:</label> <input type="text" id="input" placeholder="Enter your Email Address"></label><br>
+        <label for = "How did we meet?">How did we meet?</label>
+        <select id="How did we meet?" name="how did we meet?" required>
+          <option value="Friends">Friends</option>
+          <option value="jobFair">Job Fair</option>
+            <option value="Work">Work</option>
+            <option value="socialMedia">Social Media</option>
+            <option value="School">School</option>
+        </select><br>
+
+
+      </div>
+      <div><br>
+
+        <button type="Submit" id="button1">Submit</button>
+        
+      </div>
+  
+    </section>
+  </main>
+
+</body>
+</html>
