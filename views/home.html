@@ -30,11 +30,11 @@ Assignment: GuestBook
         <p><b>Contact Form</b></p>
 
         <!-- Guestbook Form -->
-        <form action="/" method="POST">
+        <form action="/submit" method="post">
         
-        <label for = "Name">Your Name:</label> <input type="text" id="input" placeholder="Enter your Name"></label>
-        <label for = "Company"> Company:</label> <input type="text" id="input" placeholder="Enter your Company"></label>
-        <label for = "Email">Email:</label> <input type="text" id="input" placeholder="Enter your Email Address"></label><br>
+        <label for = "Name">Your Name:</label> <input type="text" id="name" name = "name" placeholder="Enter your Name"></label>
+        <label for = "Company"> Company:</label> <input type="text" id="company" name = "company" placeholder="Enter your Company"></label>
+        <label for = "Email">Email:</label> <input type="text" id="Email" name = "Email" placeholder="Enter your Email Address"></label><br>
         <label for = "How did we meet?">How did we meet?</label>
         <select id="How did we meet?" name="how did we meet?" required>
           <option value="Friends">Friends</option>
@@ -49,9 +49,10 @@ Assignment: GuestBook
       <div><br>
 
         <button type="Submit" id="button1">Submit</button>
-        
+      </form>
+
       </div>
-  
+    
     </section>
   </main>
 
