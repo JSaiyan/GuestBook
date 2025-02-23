@@ -10,9 +10,20 @@
     <form action="/" method="get">
 
     <h1>Thank You</h1>
+    <p>Name: <%= submission.name%></p>
+    <p>Company: <%= submission.company %></p>
+    <p>Email <%= submission.Email%></p>
+    <p>How did we meet? <%= submission.meet %></p>
+    <p>timestamp <%= submission.timestamp %></p>
+
     <button type="Submit" id="Return1">Return</button>
 
     </form>
+</form>
+
+<form action='/admin/form' method="get">
+  <button type="submit">Admin</button>
+  </form>
     
 </body>
 </html>

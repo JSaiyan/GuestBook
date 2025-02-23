@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+</head>
+<body>
+
+    <form action="/" method="get">
+    <button type="submit">Home</button>
+    </form>
+   <% if( guestbookstorage.length === 0){ %>
+    
+    <p>no contacts stored</p>
+    <% } else { %>
+   
+    <ul>
+        <% for (let i = 0; i < guestbookstorage.length; i++) { %>
+            <li><%= guestbookstorage[i].name %></li>
+            <li><%= guestbookstorage[i].company %></li>
+            <li><%= guestbookstorage[i].Email %></li>
+            <li><%= guestbookstorage[i].meet %></li>
+            <li><%= guestbookstorage[i].timestamp %></li>
+            <hr>
+        <% } %> 
+        </ul>
+        <% } %> 
+       
+    
+   
+
+     
+</body>
+</html>

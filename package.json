@@ -1,7 +1,6 @@
 {
-  "name": "",
+  "name": "guestbook",
   "version": "1.0.0",
-  "description": "",
   "main": "app.js",
   "type": "module",
   "license": "AGPL-version-3.0",
@@ -17,20 +16,18 @@
   },
   "bugs": "",
   "keywords": [],
-  "author": {
-    "name": "",
-    "email": "",
-    "url": ""
-  },
+  "author": "",
   "contributors": [],
   "scripts": {
     "dev": "",
     "test": ""
   },
   "dependencies": {
+    "ejs": "^3.1.10",
     "express": "^4.21.2"
   },
   "devDependencies": {
     "nodemon": "^3.1.9"
-  }
+  },
+  "description": ""
 }
