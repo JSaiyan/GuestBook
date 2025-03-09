@@ -1,6 +1,34 @@
 //import Express
 import express from 'express';
+import mariadb from 'mariadb';
+import { validateForm } from './services/validation.js';
+import dotenv from 'dotenv';
 
+dotenv.config();
+
+//define our database credentials
+const pool = mariadb.createPool({  //this can be hacked if shared
+    host: process.env.DB_HOST,
+    user: process.env.DB_USER,
+    password: process.env.DB_PASSWORD,
+    database: process.env.DB_NAME,
+    port: process.env.DB_PORT
+
+});
+
+async function connect()
+{
+    try
+    {
+        const conn = await pool.getConnection();
+        console.log('Connected to the database!')
+        return conn;
+    } 
+    catch (err)
+    {
+        console.log(`Error connecting to the database ${err}`)
+    }
+}
 
 //Instantiate an Express application 
 const app = express();
@@ -16,11 +44,11 @@ app.use(express.urlencoded({ extended: true }));
 app.set('view engine', 'ejs');
 
 //Define a port number for our server to listen on 
-const PORT = 3000;
+const PORT = process.env.APP_PORT || 3000;
 
 
     // Array to store form data. memory database
-    const guestbookstorage = [];
+   // const guestbookstorage = [];
 
 
 
@@ -46,44 +74,46 @@ app.get('/', (req,res) =>
         });
     */
 
-     app.post('/submit', (req, res) =>{ 
-            console.log(req.body);
+app.post('/submit', async (req, res) => 
+{ 
+           console.log(req.body);
 
-            //variables to help with validation
-            const submission = { 
+            //variables to help with validation //client looks at the ID. Server looks at the name
+            //
+            const submission = 
+            {  
                 name: req.body.name,
                 company: req.body.company,
                 Email: req.body.Email,
-                meet: req.body.howdidwemeet,
-                timestamp: new Date()
-            }
-            if (submission.name.trim() == "") //looks at field in submission variable and trims any white space at beg and end of word
-                {
-                    res.send("Invalid Input");
-                    return;
-                }
+                howdidwemeet: req.body.howdidwemeet,
+                timestamp: new Date() 
+            };
 
-                if (submission.Email.trim() == "") //looks at field in submission variable and trims any white space at beg and end of word
-                {
-                    res.send("Invalid Input");
-                    return;
-                }
+            const result = validateForm(submission); //result of validate method will be true or false. Tells form
+        
+            
+                if(!result.isValid)
+                    {
+                        res.send(result.errors)
+                        return;
+                    }
 
-    // const { firstName, lastName, email } = req.body;
-    guestbookstorage.push(submission); //everytime a submision is made it pushes to guestbookstorage after validation is made by if statmenent
-    res.render('confirmation', {submission}); //allows submission data to be sent to the confirmation page 
-    });   
+                    const conn = await connect();
 
-                
-        app.get('/admin/form', (req, res) => {
-            res.render("admin", {guestbookstorage});
-        });
+                    const insertQuery = await conn.query(`INSERT INTO 
+                        guest(name, company, Email, howdidwemeet) 
+                        VALUES(?,?,?,?)`, 
+                        [submission.name,
+                        submission.company,
+                        submission.Email,
+                        submission.howdidwemeet]);
+
+                        res.render('confirmation', { submission });
+});
+
 
     //Tell the server to listen on our specified port
-    app.listen(PORT, () => {
+    app.listen(PORT, () => 
+        {
         console.log(`Server is running at http://localhost:${PORT}`);
     });
-
-    //npm init -y is initiliazing packages like package.json
-    //npm install express ejs adds ejs as a depency in the package.json file
-    //npm install when a change to the app.js file is made server is made it refreshes the server automatically. 
